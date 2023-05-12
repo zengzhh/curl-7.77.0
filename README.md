@@ -14,22 +14,28 @@ C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x86
 ```
 
 3.静态编译  
-开始菜单打开 x64 Native Tools Command Prompt for VS 2019编译64位的静态库（x86 Native Tools Command Prompt for VS 2019编译32位的静态库）
+开始菜单打开 x64 Native Tools Command Prompt for VS 2019，进入winbuild编译64位的静态库
 
 ```bash
-D:\>cd D:\Projects\vs_build\curl-7.77.0\winbuild
-D:\Projects\vs_build\curl-7.77.0\winbuild>nmake /f Makefile.vc mode=static VC=14 MACHINE=x64 DEBUG=no
-...
-..\builds\libcurl-vc14-x64-release-static-ipv6-sspi-schannel-obj-curl\curl.res
+nmake /f Makefile.vc mode=static VC=16 MACHINE=x64 DEBUG=no  //x64-Release  
+nmake /f Makefile.vc mode=static VC=16 MACHINE=x64 DEBUG=yes //x64-Debug  
 ```
 
-将VC=14(vs2105) 改为VC=16(vs2019)，重新运行nmake。编译完成后，在目录 D:\Projects\vs_build\curl-7.77.0\builds 下可以得到  
+开始菜单打开 x86 Native Tools Command Prompt for VS 2019，进入winbuild编译32位的静态库
+
+```bash
+nmake /f Makefile.vc mode=static VC=16 MACHINE=x86 DEBUG=no  //x86-Release  
+nmake /f Makefile.vc mode=static VC=16 MACHINE=x86 DEBUG=yes //x86-Debug  
+```
+```
+
+最终在目录 curl-7.77.0\builds 下可以得到  
 
 ```
-libcurl-vc14-x64-release-static-ipv6-sspi-schannel
-libcurl-vc14-x86-release-static-ipv6-sspi-schannel
-libcurl-vc16-x64-release-static-ipv6-sspi-schannel
-libcurl-vc16-x86-release-static-ipv6-sspi-schannel
+libcurl-vc16-x64-debug-static-ipv6-sspi-schannel  
+libcurl-vc16-x64-release-static-ipv6-sspi-schannel  
+libcurl-vc16-x86-debug-static-ipv6-sspi-schannel  
+libcurl-vc16-x86-release-static-ipv6-sspi-schannel  
 ```
 
 ### 二、使用curl
